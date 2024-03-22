@@ -90,10 +90,23 @@ const CourseInfo = {
 
   function getLearnerData(course, ag, submissions) {
    
-    
+    // const learnerArray =[];
+    // learnerArray.push({
+
+    //   Id
+
+    //   average,
+    //   key_value
+
+
+
+    // })
   
 
     // return result;
+  }
+  {
+
   }
   
 
@@ -106,11 +119,23 @@ const CourseInfo = {
   
 // ------------------------------------------------------------------------------------------------
 
-function student( AssignmentGroup, LearnerSubmissions) {
+function student1( AssignmentGroup, LearnerSubmissions) {
 
-    let studentId = `id: ${LearnerSubmissions[0].learner_id}`
+    // let studentId = `id: ${LearnerSubmissions[0].learner_id}`
 
-    console.log(studentId);
+    // console.log(studentId);
+
+    let studentsId =[]
+    
+
+    for (let i = 0; i < LearnerSubmissions.length; i++) {
+
+      studentsId.push(LearnerSubmissions[i].learner_id) ;
+      
+    }
+
+    let unique_studentsId = [...new Set(studentsId)];
+    console.log(unique_studentsId);
 
     let assignment_key_id =[]
 
@@ -118,14 +143,14 @@ function student( AssignmentGroup, LearnerSubmissions) {
 
     let pointsPossible=[]
     
-   for (let i = 0; i < 2; i++) {
+   for (let i = 0; i < AssignmentGroup.assignments.length; i++) {
     
           assignment_key_id.push(AssignmentGroup.assignments[i].id)
 
           studentScores.push(LearnerSubmissions[i].submission.score);
 
           pointsPossible.push(AssignmentGroup.assignments[i].points_possible);
-             
+            
 }
 
 let scoresValue=[]
@@ -133,7 +158,7 @@ let scoresValue=[]
     let sumScores = 0
     let sumPoints = 0
 
-for (let i = 0; i < 2; i++) {
+for (let i = 0; i < AssignmentGroup.assignments.length; i++) {
 
        scoresValue.push( studentScores[i] / pointsPossible[i]);
        sumScores += studentScores[i];
@@ -142,11 +167,12 @@ for (let i = 0; i < 2; i++) {
 let average = sumScores/sumPoints;
 
        console.log(`avg: ${average}`);
-       for (let i = 0; i < 2; i++) {
-       console.log(`${assignment_key_id[i]} : ${scoresValue[i]}`);
+       for (let i = 0; i < AssignmentGroup.assignments.length; i++) {
+        let key_value = `${assignment_key_id[i]} : ${scoresValue[i]}`
+       console.log(key_value);
        }
 
-//        console.log(`${assignment_key_id[i]}:`+` ${scoresValue=[i]}`); 
+
 
 
     // let assignment_id1 = `${AssignmentGroup.assignments[0].id}:`
@@ -175,7 +201,7 @@ let average = sumScores/sumPoints;
 
 
 }
-const answer = student( AssignmentGroup, LearnerSubmissions)
+const answer = student1( AssignmentGroup, LearnerSubmissions)
 
 
 
